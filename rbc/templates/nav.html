@@ -1,0 +1,33 @@
+{% load static %}
+{% block content%}
+
+<table border="0" align="center">
+    <th><a href="{% url 'home'%}?q="><button onclick="menu()" class="but"> MENU </button></a></th>
+    <th>
+    <div class="dropdown" >
+    <button class="but" onclick="pop1()"> CONTACT US </button>
+    <div id="myDropdown1" class="dropdown-content" style="display:none; border:1px Solid black;min-height:50px; ">
+    <ul>
+    <li><b> Phone No. :  ********  </b></li>
+    </ul>
+    </div>
+    </div>
+    </th>
+    <th><a href="https://www.google.com/maps/dir//country+club/@23.7463206,86.754879,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x39f6dddee67d8e37:0xfa6ce1c795354925!2m2!1d86.7898987!2d23.746246"><button class="but"><font color="black"> DIRECTIONS TO OUR RESTAURANT </font></button></a></th>
+    <th>
+    <div class="dropdown" >
+    <button class="but" onclick="pop()"> ADDRESS </button>
+    <div id="myDropdown" class="dropdown-content" style="display:none; border:1px Solid black;">
+    <ul>
+    <li> Opposite Shryam Kalyan Kendra, Below Bajaj Allainz, Sirsa Pahari, Chirkunda, Dist. Dhanbad. </li>
+    <br> Pin: 828202
+    <ul>
+    </div>
+    </div>
+    </th>
+    <th><button class="but"> <a href=""><font color="black"> GALLERY </font></a></button></th>
+    </table>
+
+<script type="text/javascript" src="{% static 'rbc/head.js' %}"></script>
+
+{% endblock %}

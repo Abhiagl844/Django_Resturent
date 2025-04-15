@@ -1,0 +1,90 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="dashboardbase" >
+    <div>
+        <h3><a href="{% url 'dashboard' %}">Dashboard</a ></h3>
+        <p><a href="{% url 'dashboard' %}?q=Orders">Orders</p>
+        <p><a href="{% url 'dashboard' %}?q=Menu">Menu</a></p>
+        <p>Customers</p>
+        <p><a href="{% url 'dashboard' %}?q=Rev">Reviews</a></p>
+    </div>
+    <div>
+        {% if q == "" %}
+            <p>Pending Orders : {{order_count}}</p>
+        {% endif %}
+
+        {% if q == "Orders" %}
+            {% for order in orders %}
+                <div>
+                    <hr>
+                    <u>{{order}}</u> 
+                    {{order.status}}
+                    {% for item in order_items %}
+                        {% if item.order == order %}
+                            <p>{{item.item}} X {{item.quantity}}</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if q == "Menu" %}
+        <a href="{% url 'create-menu' %}"><button>Create Item</button></a>
+
+        <hr>
+        <div class="cent">
+            {% for items in course %}
+                <a href="{% url 'dashboard' %}?q={{items}}"><button class = "but">{{items}}</button></a>
+            {% endfor %}
+            </div>
+        {% for item in food %}
+            <div class="cent-grid">
+                <div>
+                {% if item.image %}
+                <img src="{{item.image.url}}" width="50px" height="50px" style="margin-right:10px;">
+                {% else %}
+                <img src="" width="50px" height="50px" style="margin-right:10px;">
+                {% endif %}
+                </div>
+                <div style="align-content:center;">
+                <p style="margin-top:3%;">{{item.name}}</p> <p style="margin-top:-8%;">&#40;<small> {% for i in item.ingredients %} 
+                    {{i}}   
+                    {% endfor %}
+                </small>&#41;</p>
+                </div>
+                <div style="align-content:center;">
+                {{item.type}}
+                </div>
+                
+
+                <div style="align-content:center;">
+                {{item.price}}
+                </div>
+                <div>
+                    <a href="{% url 'update-menu' item.id %}"><button>Update Item</button></a>
+                </div>
+                <div>
+                    <a href="{% url 'delete-menu' item.id %}"><button>Delete Item</button></a>
+                </div>    
+            </div>
+        {% endfor %}
+
+
+        <hr>
+        {% endif %}
+
+        {% if q == "Rev" %}
+        {% for r in rev %}
+
+        <p><h4>{{r.food}}</h4></p>
+        <p><small>{{r.user}} {{r.rating}} Star</small></p>
+        <p>{{r.body}}</p>
+        {% endfor %}
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

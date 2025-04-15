@@ -1,0 +1,85 @@
+{% extends 'main.html' %}
+    {% load static %}
+
+    {% block content %}
+
+    {% include 'nav.html' %}
+
+    <div class="cent">
+    {% for items in course %}
+        <a href="{% url 'home' %}?q={{items}}"><button class = "but">{{items}}</button></a>
+    {% endfor %}
+    </div>
+
+    <div style="display:grid;grid-template-columns:2fr 12fr">
+        <div>
+            <hr>
+            <h3>Recommended For You</h3>
+            {% for items in l %}
+            <p>
+                <a href="{% url 'foodPage' items.id %}">
+            {% if items.image %}
+            <img src="{{items.image.url}}" width="50px" height="50px" style="margin-right:10px;">
+            {% else %}
+            <img src="" width="50px" height="50px" style="margin-right:10px;">
+            {% endif %}
+            {{items.name}}
+                </a>
+            </p>
+            {% endfor %}
+        </div>
+
+        <div>
+  
+    {% for item in food %}
+        <div class="cent-grid">
+        <div>
+            <a href="{% url 'foodPage' item.id %}">
+        {% if item.image %}
+        <img src="{{item.image.url}}" width="50px" height="50px" style="margin-right:10px;">
+        {% else %}
+        <img src="" width="50px" height="50px" style="margin-right:10px;">
+        {% endif %}
+            </a>
+        </div>
+        <div style="align-content:center;">
+            <a href="{% url 'foodPage' item.id %}">
+        <p style="margin-top:3%;">{{item.name}}</p> <p style="margin-top:-8%;">&#40;<small> {% for i in item.ingredients %} 
+            {{i}}   
+            {% endfor %}
+        </small>&#41;</p>
+            </a>
+        </div>
+        <div style="align-content:center;">
+            <a href="{% url 'foodPage' item.id %}">
+        {{item.type}}
+            </a>
+        </div>
+        
+
+        <div style="align-content:center;">
+            <a href="{% url 'foodPage' item.id %}">
+        {{item.price}}
+            </a>
+        </div>
+        <div> 
+            <br/>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'cart_add' %}?q={{item.id}}"><button class='but'>Add To Cart</button></a>
+            {% else %}
+                <a href="{% url 'login' %}"><button class='but'>Add To Cart</button></a>
+            {% endif %}
+        </div>
+    
+    </div>
+    
+    {% endfor %}
+    </div>
+</div>
+
+
+
+
+    {% endblock %}
+
+

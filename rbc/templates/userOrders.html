@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+{% block content %}
+<h3> Order History </h3>
+{% for order in orders %}
+    <hr>
+    <p>{{order}} :: {{order.status}}</p>
+    {% for item in orderItems %}
+        {% if item.order == order %}
+            <p>{{item.item}}  X  {{item.quantity}}</p>
+        {% endif %}
+    {% endfor %}
+    {% if order.status != 'Canceled'%}
+        <a href="{% url 'user-order' %}?q={{order.id}}"><button class='but'>Cancel Order</button></a>
+    {% endif %}
+
+{% endfor %}
+
+{% endblock %} 

@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<p>This is Cart!</p>
+
+{% for item in cartItems %}
+<p>{{item.item}} {{item.quantity}} {% widthratio item.item.price 1 item.quantity %}</p>
+<br/>
+<a href="{% url 'cart_delete' %}?q={{item.id}}"><button class='but'>Delete</button></a>
+{% endfor %}
+{% if cartItems %}
+    <p>Total : {{amount}}</p>
+    <a href="{% url 'cart_update' %}"><button class='but'>Update</button></a>
+    <a href="{% url 'orderPlace' %}"><button class = 'but'> Checkout </button></a>
+
+{% endif %}
+{% endblock %}

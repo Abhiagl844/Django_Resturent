@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'nav.html' %}
+<h1> {{items.name}} {{items.price}} </h1>
+{% for r in rev %}
+    <p><small>{{r.user}} {{r.rating}} Stars</small></p>
+    <p>{{r.body}}</p>
+{% endfor %}
+
+<div>
+<form method=POST  action="">
+    {%csrf_token%}
+    <input type="text" name="body">
+    <input type="text" name="rating">
+    <input type="submit" value="Submit"/>
+</form>
+</div>
+
+{% endblock %}

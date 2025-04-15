@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<p>This is Cart!</p>
+
+{% for item in cartItems %}
+<p>{{item.item}} {{item.quantity}} {% widthratio item.item.price 1 item.quantity %}</p>
+<br/>
+<a href="{% url 'cart_delete' %}?q={{item.id}}"><button class='but'>Delete</button></a>
+{% endfor %}
+{% if cartItems %}
+    <p>Total : {{amount}}</p>
+    <a href="{% url 'cart_update' %}"><button class='but'>Update</button></a>
+
+{% endif %}
+
+
+<form method = 'POST'>
+    {% csrf_token %}
+    <div style='display:grid;grid-template-columns:1fr 1fr;'>
+        <div>
+        {% for item in cartItem %}
+            <p>{{item.item}}</p>
+        {% endfor %}
+        </div>
+        <div>
+        {{ forms.management_form }}
+        {% for form in forms %}
+            <p>{{form.as_p}}</p>
+        {% endfor %}
+        </div>
+    </div>
+    <input type='submit'  value='Update'/>
+
+
+</form>
+{% endblock %}
