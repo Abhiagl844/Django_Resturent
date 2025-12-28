@@ -40,7 +40,7 @@
             {% endfor %}
             </div>
         {% for item in food %}
-            <div class="cent-grid">
+            <div class="admin-row">
                 <div>
                 {% if item.image %}
                 <img src="{{item.image.url}}" width="50px" height="50px" style="margin-right:10px;">
@@ -48,12 +48,13 @@
                 <img src="" width="50px" height="50px" style="margin-right:10px;">
                 {% endif %}
                 </div>
-                <div style="align-content:center;">
-                <p style="margin-top:3%;">{{item.name}}</p> <p style="margin-top:-8%;">&#40;<small> {% for i in item.ingredients %} 
-                    {{i}}   
-                    {% endfor %}
-                </small>&#41;</p>
+                <div class="admin-text">
+                    <div class="admin-name">{{item.name}}</div>
+                    <div class="admin-ingredients">
+                        ( {% for i in item.ingredients %} {{i}} {% endfor %} )
+                    </div>
                 </div>
+
                 <div style="align-content:center;">
                 {{item.type}}
                 </div>
@@ -62,12 +63,15 @@
                 <div style="align-content:center;">
                 {{item.price}}
                 </div>
-                <div>
-                    <a href="{% url 'update-menu' item.id %}"><button>Update Item</button></a>
+                <div class="admin-actions">
+                    <a href="{% url 'update-menu' item.id %}">
+                        <button>Update</button>
+                    </a>
+                    <a href="{% url 'delete-menu' item.id %}">
+                        <button>Delete</button>
+                    </a>
                 </div>
-                <div>
-                    <a href="{% url 'delete-menu' item.id %}"><button>Delete Item</button></a>
-                </div>    
+   
             </div>
         {% endfor %}
 

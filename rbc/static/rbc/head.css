@@ -78,11 +78,11 @@
     align-items:center;
     justify-content:center;
 }
-.cent-grid{
+/* .cent-grid{
     place-self:center;
     display:grid;
     grid-template-columns: 1fr 4fr 2fr 3fr 2fr;
-}
+} */
 
 .acc{
     position: relative;
@@ -149,4 +149,78 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.food-list {
+    width: 100%;
+}
+
+.food-row {
+    display: grid;
+    grid-template-columns: 70px 1fr 100px 80px 140px;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.food-row a {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+
+.food-row p {
+    margin: 0;
+    padding: 0;
+}
+
+.food-row button {
+    white-space: nowrap;
+}
+
+.food-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.food-name {
+    font-weight: 600;
+}
+
+.food-ingredients {
+    font-size: 13px;
+    color: #555;
+}
+
+/* ADMIN MENU LIST */
+
+.admin-row {
+    display: grid;
+    grid-template-columns: 70px 1fr 120px 80px 200px;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.admin-name {
+    font-weight: 600;
+}
+
+.admin-ingredients {
+    font-size: 13px;
+    color: #555;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 8px;
 }

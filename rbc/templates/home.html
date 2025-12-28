@@ -13,7 +13,8 @@
         {% endfor %}
     </div>
 
-    <div style="display:grid;grid-template-columns:2fr 12fr">
+    <div style="display:grid;grid-template-columns:3fr 9fr; width:90%; margin:auto;">
+
 
         <div>
             <hr>
@@ -33,10 +34,10 @@
             {% endfor %}
         </div>
 
-        <div>
+        <div class="food-list">
             {% for item in food %}
 
-                <div class="cent-grid">
+                <div class="food-row">
 
                     <div>
                         <a href="{% url 'foodPage' item.id %}">
@@ -48,18 +49,15 @@
                         </a>
                     </div>
 
-                    <div style="align-content:center;">
+                    <div class="food-text">
                         <a href="{% url 'foodPage' item.id %}">
-                            <p style="margin-top:3%;">{{item.name}}</p>
-                            <p style="margin-top:-8%;">
-                                &#40;<small>
-                                    {% for i in item.ingredients %}
-                                        {{i}}
-                                    {% endfor %}
-                                </small>&#41;
-                            </p>
+                            <div class="food-name">{{item.name}}</div>
+                            <div class="food-ingredients">
+                                ( {% for i in item.ingredients %} {{i}} {% endfor %} )
+                            </div>
                         </a>
                     </div>
+
 
                     <div style="align-content:center;">
                         <a href="{% url 'foodPage' item.id %}">
