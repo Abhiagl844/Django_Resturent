@@ -30,20 +30,42 @@ def cartPage(req):
 
     return render(req, 'cart.html' , context)
 
-@login_required(login_url='login')
 
+
+# def cartAdd(req):
+#     # cart = cartSes.objects.get(user = req.user)
+#     cart, created = cartSes.objects.get_or_create(user=req.user)
+
+#     addCart = req.GET.get('q')
+
+#     item = get_object_or_404(food, id=addCart)
+
+#     if not cartItems.objects.filter(cart=cart, item=item).exists():
+#         cartItems.objects.create(cart=cart, item=item)
+
+#     return redirect('home')
+
+@login_required(login_url='login')
 def cartAdd(req):
-    # cart = cartSes.objects.get(user = req.user)
     cart, created = cartSes.objects.get_or_create(user=req.user)
 
     addCart = req.GET.get('q')
+    if not addCart:
+        return redirect('home')
 
     item = get_object_or_404(food, id=addCart)
 
-    if not cartItems.objects.filter(cart=cart, item=item).exists():
-        cartItems.objects.create(cart=cart, item=item)
+    cart_item, created = cartItems.objects.get_or_create(
+        cart=cart,
+        item=item
+    )
+
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
 
     return redirect('home')
+
 
 def cartUpdate(req):
     page = 'cart'
@@ -78,7 +100,16 @@ def orderPlace(req):
     cart, created = cartSes.objects.get_or_create(user=req.user)
 
     cartItem = cartItems.objects.filter(cart = cart)
-    user_data = user_details.objects.get(user = req.user)
+    # user_data = user_details.objects.get(user = req.user)
+    user_data, created = user_details.objects.get_or_create(
+    user=req.user,
+    defaults={
+        'email': req.user.email or '',
+        'phone': 0,
+        'address': 'Not provided'
+    }
+)
+
 
     order = order1.objects.create(
         user = req.user,
