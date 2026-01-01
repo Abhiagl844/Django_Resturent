@@ -73,23 +73,28 @@
 
 <!-- ================= Styling ================= -->
 <style>
-.star-rating {
-    
+   .star-rating {
     display: inline-flex;
+    flex-direction: row-reverse; /* ⭐ IMPORTANT */
     font-size: 1.8rem;
 }
+
 .star-rating input {
     display: none;
 }
+
 .star-rating label {
     color: #ccc;
     cursor: pointer;
 }
-.star-rating input:checked + label,
+
+/* correct highlighting */
+.star-rating input:checked ~ label,
 .star-rating label:hover,
 .star-rating label:hover ~ label {
     color: gold;
 }
+
 .review-box {
     background: #ffffff;
     padding: 15px;
