@@ -17,10 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include , path
 
+from rbc.views import create_admin_once
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('rbc.urls')),
     path('cart/', include('itemCart.urls')),
+
+    path('create-admin/', create_admin_once),
+
     
 ]
