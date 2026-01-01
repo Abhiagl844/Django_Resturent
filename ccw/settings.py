@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rbc.apps.RbcConfig',
-    'itemCart.apps.ItemcartConfig'
+    'itemCart.apps.ItemcartConfig',
     'cloudinary',
     'cloudinary_storage',
 
