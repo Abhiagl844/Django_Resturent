@@ -14,8 +14,8 @@ from django.contrib.auth import authenticate , login , logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
-from django.http import HttpResponse
-from django.contrib.auth.models import User
+# from django.http import HttpResponse
+# from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -211,12 +211,12 @@ def user_orders(req):
         'orderItems': orderItems
     })
 
-def create_admin_once(request):
-    if not User.objects.filter(username="admin").exists():
-        User.objects.create_superuser(
-            username="admin",
-            password="admin123",
-            email="admin@example.com"
-        )
-        return HttpResponse("Admin created successfully")
-    return HttpResponse("Admin already exists")
+# def create_admin_once(request):
+#     if not User.objects.filter(username="admin").exists():
+#         User.objects.create_superuser(
+#             username="admin",
+#             password="admin123",
+#             email="admin@example.com"
+#         )
+#         return HttpResponse("Admin created successfully")
+#     return HttpResponse("Admin already exists")
